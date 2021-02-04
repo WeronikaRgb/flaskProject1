@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Remis </title>
+    <link rel="stylesheet" href="../static/css/wygrana.css" type="text/css" />
+
+</head>
+<body>
+    <div class="ozdobnik">
+    </div>
+    <header>
+        Koniec gry!
+    </header>
+    <div class="ozdobnik">
+    </div>
+    <div class="podsumowanie">
+        Wygląda na to, że mamy remis :)
+       <p>Gracz 1: {{ player1.name }}</p>
+        <p>Z ilością punktów: {{ player1.punkty }}</p>
+        <p>Gracz 2: {{ player2.name }}</p>
+        <p>Z ilością punktów: {{ player2.punkty }} </p>
+    </div>
+
+  <div class="czyzagrac">
+    <p>Czy chcesz zagrać jeszcze raz?</p>
+    <p> <a class="btn" href="{{ url_for('stworzgracza') }}"> Grajmy!</a> </p>
+  </div>
+</body>
+</html>

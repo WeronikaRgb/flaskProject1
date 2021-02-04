@@ -1,0 +1,52 @@
+
+.ulmenu {
+    background: slategrey;
+    height: 30px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+
+}
+.limenu{
+    float: left;
+    font-size: 20px;
+    width: 33%;
+    text-align: center;
+    font-weight: bold;
+}
+.container{
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: beige;
+
+}
+#plansza {
+    width:80%;
+    text-align: center;
+    margin: 10px;
+    float: inside;
+}
+
+#gracz{
+    text-align: center;
+}
+#pierwszy{
+    float: left;
+    width: 20%;
+    background-color: aquamarine;
+    margin-right: 15px;
+}
+#drugi{
+    float: right;
+    width:20%;
+    background-color: coral;
+}
+ul{
+    padding: 0;
+    margin: 0;
+}
+li{
+    list-style: none;
+
+}

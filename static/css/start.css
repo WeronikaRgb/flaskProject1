@@ -1,0 +1,22 @@
+header {
+    background: slategrey;
+    width:100%;
+    height: 80px;
+    font-size: 50px;
+    text-align: center;
+}
+.ozdobnik { background-image: url(https://upload.wikimedia.org/wikipedia/commons/0/00/Coastal-rocks.jpg);
+; width:100%; height: 40px; }
+.zasady {
+    text-align: center;
+    margin: 40px;
+    font-size: 18px;
+}
+.gra {
+    width: 100%;
+    font-size: 30px;
+    text-align: center;
+    margin-top:20px;
+    margin-bottom: 20px;
+}
+footer { background: slategrey; width:100%; height: 45px; text-align: center; }

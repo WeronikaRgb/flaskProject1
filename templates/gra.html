@@ -1,0 +1,155 @@
+<!doctype html>
+<html>
+     <head>
+          <meta charset="UTF-8" />
+          <title>Gra Kopalnia</title>
+          <link rel="stylesheet" href="../static/css/gra.css" type="text/css" />
+     </head>
+     <body>
+        <header>
+        </header>
+        <div class="menu">
+        <ul class="ulmenu">
+            <li class="limenu">Gracz:
+                {% if current_player == 1 %}
+                    {{ player1.name }}
+                {% elif current_player == -1 %}
+                    {{ player2.name }}
+                {% endif %}
+            </li>
+            <li class="limenu">
+                {% if current_player == 1 %}
+                <a class="btn" href='/kostka/1'>Rzuć kostką!</a>
+                {% elif current_player == -1 %}
+                    <a class="btn" href='/kostka/2'>Rzuć kostką!</a>
+                {% endif %}
+            </li>
+            <li class="limenu">Wyrzuciłeś: {{ wynik }}</li>
+        </ul>
+        </div>
+     <div class="container">
+        <div id="pierwszy">
+            <ul>
+                <li id="gracz">Gracz 1: {{ player1.name }} </li>
+                <br>
+                <li>SUROWCE</li>
+                 <li>
+                     {% if player1.czy_surowiec == 1 %}
+                     <a class="btn" href='/surowce/1'> Zbierz surowiec! </a>
+                     {% endif %}
+                 </li>
+                <li>Węgiel: {{ player1.carbon }}</li>
+                <li>Złoto: {{ player1.gold }}</li>
+                <li>Diament: {{ player1.diamond }} </li>
+                <li>
+                    {% if player1.czy_cofa == 1 %}
+                    <a href= '/karnecofanie/1'> Wracaj na początek!</a>
+                    {% endif %}
+                </li>
+                <li> <a href="{{ url_for('odnowa') }}"> Grajmy od nowa!</a> </li>
+                {% if player1.czy_rzucone == 1 %}
+                <li> <a href="/ruch/1/pierwszy">
+                    <img src="/static/player1pionek1.jpg" alt="pionek1">
+                </a>
+
+                </li>
+                 <li> <a href="/ruch/2/pierwszy">
+                    <img src="/static/player1pionek2.jpg" alt="pionek2">
+                </a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+
+        <div id="drugi">
+            <ul>
+                <li id="gracz">Gracz 2: {{ player2.name }} </li>
+                <br>
+                <li>SUROWCE</li>
+                 <li>
+                     {% if player2.czy_surowiec == 1 %}
+                     <a class="btn" href='/surowce/2'>Zbierz surowiec! </a>
+                     {% endif %}
+                 </li>
+                <li>Węgiel: {{ player2.carbon }}</li>
+                <li>Złoto: {{ player2.gold }}</li>
+                <li>Diament: {{ player2.diamond }} </li>
+                <li>
+                    {% if player2.czy_cofa == 1 %}
+                    <a href= '/karnecofanie/2'> Wracaj na początek! </a>
+                    {% endif %}
+                </li>
+                <li> <a href="{{ url_for('odnowa') }}"> Grajmy od nowa!</a> </li>
+            {% if player2.czy_rzucone == 1 %}
+                <li> <a href="/ruch/1/drugi">
+                    <img src="/static/player2pionek1.jpg" alt="pionek1">
+                </a>
+                </li>
+                 <li> <a href="/ruch/2/drugi">
+                    <img src="/static/player2pionek2.jpg" alt="pionek2">
+                </a>
+                </li>
+            {% endif %}
+
+            </ul>
+        </div>
+        <div id = plansza>
+        <table>
+            {% for row in range(0,11) %}
+            <tr>
+                {% for column in range(0,15) %}
+                <td>
+                    {% if player1.pionek1[0] == row and player1.pionek1[1] == column %}
+                        <img src="/static/player1pionek1.jpg" alt="player1">
+                    {% elif player1.pionek2[0] == row and player1.pionek2[1] == column %}
+                        <img src="/static/player1pionek2.jpg" alt="player2">
+                    {% elif player2.pionek1[0] == row and player2.pionek1[1] == column %}
+                        <img src="/static/player2pionek1.jpg" alt="player1">
+                    {% elif player2.pionek2[0] == row and player2.pionek2[1] == column %}
+                        <img src="/static/player2pionek2.jpg" alt="player2">
+                    {% elif (row == 0 and column == 14) or (row == 1 and column == 0) or (row == 2 and column == 14) or (row == 3 and column == 0) or (row == 4 and column == 14) or (row == 5 and column == 0)  or (row == 6 and column == 14) or (row == 7 and column == 0) or (row == 8 and column == 14) or (row == 9 and column == 0) %}
+                        <a href="{{ row, column }}">
+                        <img src="/static/wdol.jpg" alt="wdol">
+                    </a>
+                    {% elif (row == 0 and column == 1) or (row == 2 and column == 0) or (row == 4 and column == 0) or (row == 6 and column == 0) or (row == 8 and column == 0) or (row == 10 and column == 0) %}
+                        <a href="{{ row, column }}">
+                        <img src="/static/wprawo.jpg" alt="wprawo">
+                    </a>
+                     {% elif (row == 1 and column == 14) or (row == 3 and column == 14) or (row == 5 and column == 14) or (row == 7 and column == 14) or (row == 9 and column == 14) %}
+                        <a href="{{ row, column }}">
+                        <img src="/static/wlewo.jpg" alt="wlewo">
+                    </a>
+                    {% elif row == 0 and column == 0 %}
+                        <a href="{{ row, column }}">
+                        <img src="/static/start.jpg" alt="start">
+                    </a>
+                    {% elif row == 10 and column == 14 %}
+                        <a href="{{ row, column }}">
+                        <img src="/static/meta.jpg" alt="meta">
+                    </a>
+                    {% elif (row == 0 and column == 4) or (row == 1 and column == 10) or (row == 2 and column == 2) or (row == 3 and column == 7) or (row == 6 and column == 10) or (row == 7 and column == 3) or (row == 9 and column == 5)  or (row == 10 and column == 1)  or (row == 5 and column == 3) or (row == 0 and column == 12) or (row == 2 and column == 13) or (row == 4 and column == 5) or (row == 4 and column == 9) or (row == 6 and column == 5) or (row == 8 and column == 8) or (row == 8 and column == 1) or (row == 9 and column == 11) or (row == 10 and column == 6) %}
+                        <a href="{{ row, column }}">
+                        <img src="/static/carbon.jpg" alt="carbon">
+                    </a>
+                    {% elif (row == 2 and column == 1) or (row == 1 and column == 6) or (row == 0 and column == 2) or (row == 8 and column == 2) or (row == 7 and column == 7) or (row == 3 and column == 11) or (row == 7 and column == 13) or (row == 10 and column == 9) %}
+                        <a href="{{ row, column }}">
+                        <img src="/static/gold.jpg" alt="gold">
+                    </a>
+                    {% elif (row == 0 and column == 8) or (row == 3 and column == 4) or (row == 6 and column == 12) or (row == 10 and column == 3) or (row == 5 and column == 7) %}
+                        <a href="{{ row, column }}">
+                        <img src="/static/diamond.jpg" alt="diamond">
+                    </a>
+                    {% elif (row == 0 or row == 1 or row == 2 or row == 3 or row == 4 or row == 5 or row == 6 or row == 7 or row == 8 or row == 9 or row == 10) and (column == 0 or column == 1 or column == 2 or column == 3 or column == 4 or column == 5 or column == 6 or column == 7 or column == 8 or column == 9 or column == 10 or column == 11 or column == 12 or column == 13 or column == 14) %}
+                        <a href="{{ row, column }}">
+                        <img src="/static/kwadrat.jpg" alt="pole">
+                        </a>
+                    {% endif %}
+                </td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+        </div>
+     </div>
+     </body>
+</html>

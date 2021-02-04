@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Wygrana </title>
+    <link rel="stylesheet" href="../static/css/wygrana.css" type="text/css" />
+
+</head>
+<body>
+    <div class="ozdobnik">
+    </div>
+    <header>
+        Koniec gry!
+    </header>
+    <div class="ozdobnik">
+    </div>
+    <div class="podsumowanie">
+       <p>Wygrywa: {{ wygrany.name }}</p>
+        <p>Z ilością punktów: {{ wygrany.punkty }}</p>
+        <p>Drugie miejsce: {{ przegrany.name }}</p>
+        <p>Z ilością punktów: {{ przegrany.punkty }} </p>
+    </div>
+
+  <div class="czyzagrac">
+    <p>Czy chcesz zagrać jeszcze raz?</p>
+    <p> <a class="btn" href="{{ url_for('stworzgracza') }}"> Grajmy!</a> </p>
+  </div>
+</body>
+</html>
