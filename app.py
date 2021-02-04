@@ -313,7 +313,7 @@ def gra():
     else:
         return render_template('gra.html', player1=player1, player2=player2, wynik=wynik, current_player=current_player)
 
-if __name__ == '__main__':
-    app.run()
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5126, debug=True)
 
 
